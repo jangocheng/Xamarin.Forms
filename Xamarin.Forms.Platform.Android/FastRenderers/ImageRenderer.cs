@@ -213,7 +213,7 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
 				return;
 			}
 
-			await Control.UpdateBitmap(_element, previous);
+			await Control.UpdateBitmap(_element, previous).ConfigureAwait(false);
 		}
 
 		protected override void OnLayout(bool changed, int left, int top, int right, int bottom)
