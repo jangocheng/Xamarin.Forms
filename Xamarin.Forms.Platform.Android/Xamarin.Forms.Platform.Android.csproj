@@ -118,6 +118,7 @@
     <Compile Include="AppCompat\ILifeCycleState.cs" />
     <Compile Include="ButtonBackgroundTracker.cs" />
     <Compile Include="CollectionView\CarouselViewRenderer.cs" />
+    <Compile Include="CollectionView\DataChangeObserver.cs" />
     <Compile Include="CollectionView\ItemsViewAdapter.cs" />
     <Compile Include="CollectionView\EdgeSnapHelper.cs" />
     <Compile Include="CollectionView\EndSnapHelper.cs" />
