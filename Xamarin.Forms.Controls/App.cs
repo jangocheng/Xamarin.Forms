@@ -111,7 +111,7 @@ namespace Xamarin.Forms.Controls
 		public Page CreateDefaultMainPage()
 		{
 
-			return new ContentPage()
+			var page = new ContentPage()
 			{
 				Content = new StackLayout()
 				{
@@ -119,15 +119,31 @@ namespace Xamarin.Forms.Controls
 					{
 						new Entry()
 						{
-							Visual = Visual.Material
+							Visual = Visual.Material,
+							Text = "Material"
 						},
 						new Entry()
 						{
+							Text = "Defaullt"
 						},
+						new Button()
+						{
+							Visual = Visual.Material,
+							Text = "Material"
+
+						},
+						new Button()
+						{
+							Text = "Default"
+
+						}
 						//new MaterialTextView()
 					}
 				}
 			};
+
+			page.On<iOS>().SetUseSafeArea(true);
+			return new NavigationPage( page);
 
 			/*var layout = new StackLayout { BackgroundColor = Color.Red };
 			layout.Children.Add(new Label { Text = "This is master Page" });

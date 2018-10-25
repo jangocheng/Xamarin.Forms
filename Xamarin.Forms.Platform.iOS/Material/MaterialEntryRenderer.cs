@@ -8,10 +8,10 @@ using UIKit;
 using Xamarin.Forms;
 using MTextField = MaterialComponents.TextField;
 
-[assembly: ExportRenderer(typeof(Button), typeof(Xamarin.Forms.Platform.iOS.Material.MaterialButtonRenderer), new[] { typeof(Visual.MaterialVisual) })]
+[assembly: ExportRenderer(typeof(Entry), typeof(Xamarin.Forms.Platform.iOS.Material.MaterialEntryRenderer), new[] { typeof(Visual.MaterialVisual) })]
 namespace Xamarin.Forms.Platform.iOS.Material
 {
-	public class MaterialButtonRenderer : EntryRenderer
+	public class MaterialEntryRenderer : EntryRenderer
 	{
 		protected override UITextField CreateNativeControl()
 		{

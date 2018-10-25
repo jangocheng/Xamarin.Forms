@@ -147,6 +147,7 @@
     <Compile Include="NativeValueConverterService.cs" />
     <Compile Include="NativeBindingService.cs" />
     <Compile Include="Extensions\AccessibilityExtensions.cs" />
+    <Compile Include="Material\MaterialButtonRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\StringResources.ar.resx" />
