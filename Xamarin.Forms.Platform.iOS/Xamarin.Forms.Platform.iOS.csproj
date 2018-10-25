@@ -42,7 +42,11 @@
     <Reference Include="Xamarin.iOS" />
     <Reference Include="System.Net.Http" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="Xamarin.iOS.MaterialComponents">
+      <Version>60.1.0</Version>
+    </PackageReference>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ContextActionCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ContextScrollViewDelegate.cs" />
@@ -121,6 +125,7 @@
     <Compile Include="Extensions\LabelExtensions.cs" />
     <Compile Include="Extensions\VisualElementExtensions.cs" />
     <Compile Include="Flags.cs" />
+    <Compile Include="Material\MaterialEntryRenderer.cs" />
     <Compile Include="NativeViewWrapper.cs" />
     <Compile Include="NativeViewWrapperRenderer.cs" />
     <Compile Include="PlatformEffect.cs" />

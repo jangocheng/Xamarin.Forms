@@ -14,6 +14,8 @@ namespace Xamarin.Forms.Platform.Android
 		public FormsEditText(Context context) : base(context)
 		{
 			DrawableCompat.Wrap(Background);
+
+			
 		}
 
 		bool IDescendantFocusToggler.RequestFocus(global::Android.Views.View control, Func<bool> baseRequestFocus)

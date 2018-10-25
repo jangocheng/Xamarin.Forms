@@ -102,9 +102,34 @@ namespace Xamarin.Forms.Controls
 			await TestBugzilla44596();
 		}
 
+
+		public class MaterialTextView : View
+		{
+
+		}
+
 		public Page CreateDefaultMainPage()
 		{
-			var layout = new StackLayout { BackgroundColor = Color.Red };
+
+			return new ContentPage()
+			{
+				Content = new StackLayout()
+				{
+					Children =
+					{
+						new Entry()
+						{
+							Visual = Visual.Material
+						},
+						new Entry()
+						{
+						},
+						//new MaterialTextView()
+					}
+				}
+			};
+
+			/*var layout = new StackLayout { BackgroundColor = Color.Red };
 			layout.Children.Add(new Label { Text = "This is master Page" });
 			var master = new ContentPage { Title = "Master", Content = layout, BackgroundColor = Color.SkyBlue, Icon ="menuIcon" };
 			master.On<iOS>().SetUseSafeArea(true);
@@ -119,7 +144,7 @@ namespace Xamarin.Forms.Controls
 			mdp.SetAutomationPropertiesHelpText("Main page help text");
 			mdp.Master.Icon.SetAutomationPropertiesHelpText("This as MDP icon");
 			mdp.Master.Icon.SetAutomationPropertiesName("MDPICON");
-			return mdp;
+			return mdp;*/
 		}
 
 		protected override void OnAppLinkRequestReceived(Uri uri)
