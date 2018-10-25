@@ -58,7 +58,7 @@ namespace Xamarin.Forms.Internals
 		{
 			if (args.Length == 0)
 			{
-				return GetHandler(type);
+				return GetHandler(type, visual?.GetType() ?? _defaultVisualRenderer);
 			}
 
 			Type handlerType = GetHandlerType(type, visual?.GetType() ?? _defaultVisualRenderer);
