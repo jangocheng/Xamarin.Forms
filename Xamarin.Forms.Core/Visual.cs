@@ -1,4 +1,6 @@
-﻿namespace Xamarin.Forms
+﻿using System;
+
+namespace Xamarin.Forms
 {
 	public static class Visual
 	{
@@ -9,5 +11,22 @@
 		public sealed class DefaultVisual : IVisual { }
 	}
 
+	[TypeConverter(typeof(VisualTypeConverter))]
 	public interface IVisual { }
+
+	[Xaml.TypeConversion(typeof(IVisual))]
+	public class VisualTypeConverter : TypeConverter
+	{
+		public override object ConvertFromInvariantString(string value)
+		{
+			if (value != null) {
+				switch (value.Trim().ToLowerInvariant()) {
+				case "material": return Visual.Material;
+				case "default":
+				default: return Visual.Default;
+				}
+			}
+			throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(IVisual)}");
+		}
+	}
 }

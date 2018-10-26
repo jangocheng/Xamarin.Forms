@@ -7,7 +7,6 @@ using Xamarin.Forms.Internals;
 
 namespace Xamarin.Forms
 {
-
 	public class View : VisualElement, IViewController, IGestureController
 	{
 		protected internal IGestureController GestureController => this;
@@ -32,15 +31,14 @@ namespace Xamarin.Forms
 
 
 		public static readonly BindableProperty VisualProperty =
-			BindableProperty.Create(nameof(Visual), typeof(IVisual), typeof(View));
+			BindableProperty.Create(nameof(Visual), typeof(IVisual), typeof(View), Forms.Visual.Default,
+									validateValue: (b, v) => v!= null);
 
-		[TypeConverter]
 		public IVisual Visual
 		{
 			get { return (IVisual)GetValue(VisualProperty); }
 			set { SetValue(VisualProperty, value); }
 		}
-
 
 		static void OnMarginLeftPropertyChanged(BindableObject bindable, object oldValue, object newValue)
 		{
