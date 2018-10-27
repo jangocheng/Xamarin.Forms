@@ -13,6 +13,7 @@ using static System.String;
 using Android.Support.V4.View;
 using Xamarin.Forms.Platform.Android.Material;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android.FastRenderers;
 
 // this won't go here permanently it's just for testing at this point
 [assembly: ExportRenderer(typeof(Entry), typeof(MaterialTextViewRenderer), new[] { typeof(Visual.MaterialVisual) })]
@@ -27,14 +28,11 @@ namespace Xamarin.Forms.Platform.Android.Material
 		protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
 		{
 			base.OnElementChanged(e);
-
-
 			var layout = new global::Android.Support.Design.Widget.TextInputLayout(Context);
 			var editText = new global::Android.Support.Design.Widget.TextInputEditText(Context);
-			layout.AddView(editText);
 
-			editText.Hint = "Visions of disorder";
-			layout.Hint = "Visions of disorder";
+			layout.AddView(editText);
+			layout.Hint = AutomationPropertiesProvider.ConcatenateNameAndHelpText(Element);
 			SetNativeControl(layout);
 		}
 	}

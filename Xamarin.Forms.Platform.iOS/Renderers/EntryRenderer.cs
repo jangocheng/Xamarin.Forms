@@ -77,6 +77,11 @@ namespace Xamarin.Forms.Platform.iOS
 			base.Dispose(disposing);
 		}
 
+		protected override UITextField CreateNativeControl()
+		{
+			return new UITextField(RectangleF.Empty);
+		}
+
 		protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
 		{
 			base.OnElementChanged(e);
@@ -86,7 +91,7 @@ namespace Xamarin.Forms.Platform.iOS
 
 			if (Control == null)
 			{
-				var textField = new UITextField(RectangleF.Empty);
+				var textField = CreateNativeControl();
 				SetNativeControl(textField);
 
 				// Cache the default text color

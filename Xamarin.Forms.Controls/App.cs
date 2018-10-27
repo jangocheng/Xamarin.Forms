@@ -111,39 +111,37 @@ namespace Xamarin.Forms.Controls
 		public Page CreateDefaultMainPage()
 		{
 
+			var entryField = new Entry()
+			{
+				Visual = Visual.Material,
+				Text = "Material",
+			};
+
+			entryField.SetAutomationPropertiesHelpText("I am the title Text");
+
+
+			var entryField2 = new Entry()
+			{
+				Visual = Visual.Material,
+				Text = "",
+			};
+
+			entryField2.SetAutomationPropertiesHelpText("I am the title Text");
+
 			var page = new ContentPage()
 			{
 				Content = new StackLayout()
 				{
 					Children =
 					{
-						new Entry()
-						{
-							Visual = Visual.Material,
-							Text = "Material"
-						},
-						new Entry()
-						{
-							Text = "Defaullt"
-						},
-						new Button()
-						{
-							Visual = Visual.Material,
-							Text = "Material"
-
-						},
-						new Button()
-						{
-							Text = "Default"
-
-						}
-						//new MaterialTextView()
+						entryField,
+						entryField2
 					}
 				}
 			};
 
 			page.On<iOS>().SetUseSafeArea(true);
-			return new NavigationPage( page);
+			return new NavigationPage(page);
 
 			/*var layout = new StackLayout { BackgroundColor = Color.Red };
 			layout.Children.Add(new Label { Text = "This is master Page" });
