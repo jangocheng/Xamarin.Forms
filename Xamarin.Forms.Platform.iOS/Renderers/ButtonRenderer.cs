@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using SizeF = CoreGraphics.CGSize;
+using MButton = MaterialComponents.Button;
 
 namespace Xamarin.Forms.Platform.iOS
 {
@@ -87,6 +88,9 @@ namespace Xamarin.Forms.Platform.iOS
 
 		protected override UIButton CreateNativeControl()
 		{
+			if(Element?.Visual == Visual.Material)
+				return new MButton();
+
 			return new UIButton(UIButtonType.System);
 		}
 

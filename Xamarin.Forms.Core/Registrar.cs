@@ -172,39 +172,45 @@ namespace Xamarin.Forms.Internals
 				// Only go through this process if we have not registered something for this type;
 				// we don't want RenderWith renderers to override ExportRenderers that are already registered.
 				// Plus, there's no need to do this again if we already have a renderer registered.
-				if (_handlers.TryGetValue(viewType, out Dictionary<Type, Type> visualRenderers))
+				if (!_handlers.TryGetValue(viewType, out Dictionary<Type, Type> visualRenderers) || !visualRenderers.ContainsKey(visualType))
 				{
-					if (!visualRenderers.ContainsKey(visualType))
+					// get RenderWith attribute for just this type, do not inherit attributes from base types
+					var attribute = viewType.GetTypeInfo().GetCustomAttributes<RenderWithAttribute>(false).FirstOrDefault();
+					if (attribute == null)
 					{
-						// get RenderWith attribute for just this type, do not inherit attributes from base types
-						var attribute = viewType.GetTypeInfo().GetCustomAttributes<RenderWithAttribute>(false).FirstOrDefault();
-						if (attribute == null)
-						{
-							// TODO this doesn't appear to do anything. Register just returns as a NOOP if the renderer is null
-							Register(viewType, null, new[] { visualType }); // Cache this result so we don't have to do GetCustomAttributes again
-						}
-						else
-						{
-							Type specificTypeRenderer = attribute.Type;
+						// TODO this doesn't appear to do anything. Register just returns as a NOOP if the renderer is null
+						Register(viewType, null, new[] { visualType }); // Cache this result so we don't have to do GetCustomAttributes again
+					}
+					else
+					{
+						Type specificTypeRenderer = attribute.Type;
 
-							if (specificTypeRenderer.Name.StartsWith("_", StringComparison.Ordinal))
+						if (specificTypeRenderer.Name.StartsWith("_", StringComparison.Ordinal))
+						{
+							// TODO: Remove attribute2 once renderer names have been unified across all platforms
+							var attribute2 = specificTypeRenderer.GetTypeInfo().GetCustomAttribute<RenderWithAttribute>();
+							if (attribute2 != null)
 							{
-								// TODO: Remove attribute2 once renderer names have been unified across all platforms
-								var attribute2 = specificTypeRenderer.GetTypeInfo().GetCustomAttribute<RenderWithAttribute>();
-								if (attribute2 != null)
-									specificTypeRenderer = attribute2.Type;
-
-								if (specificTypeRenderer.Name.StartsWith("_", StringComparison.Ordinal))
+								for (int i = 0; i < attribute2.SupportedVisuals.Length; i++)
 								{
-									Register(viewType, null, new[] { visualType }); // Cache this result so we don't work through this chain again
-
-									viewType = viewType.GetTypeInfo().BaseType;
-									continue;
+									if (attribute2.SupportedVisuals[i] == visualType)
+									{
+										specificTypeRenderer = attribute2.Type;
+										break;
+									}
 								}
 							}
 
-							Register(viewType, specificTypeRenderer, new[] { visualType }); // Register this so we don't have to look for the RenderWithAttibute again in the future
+							if (specificTypeRenderer.Name.StartsWith("_", StringComparison.Ordinal))
+							{
+								Register(viewType, null, new[] { visualType }); // Cache this result so we don't work through this chain again
+
+								viewType = viewType.GetTypeInfo().BaseType;
+								continue;
+							}
 						}
+
+						Register(viewType, specificTypeRenderer, new[] { visualType }); // Register this so we don't have to look for the RenderWithAttibute again in the future
 					}
 				}
 

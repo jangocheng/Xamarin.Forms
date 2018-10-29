@@ -29,7 +29,11 @@ namespace Xamarin.Forms.Platform
 #endif
 	internal class _BoxViewRenderer { }
 
+#if __IOS__
+	[RenderWith(typeof(EntryRenderer), supportedVisuals: new[] { typeof(Visual.MaterialVisual), typeof(Visual.DefaultVisual) })]
+#else
 	[RenderWith(typeof(EntryRenderer))]
+#endif
 	internal class _EntryRenderer { }
 
 	[RenderWith (typeof (EditorRenderer))]

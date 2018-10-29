@@ -7,6 +7,9 @@ using Foundation;
 using UIKit;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Specifics = Xamarin.Forms.PlatformConfiguration.iOSSpecific.Entry;
+using MTextField = MaterialComponents.TextField;
+using MTextInputControllerOutlined = MaterialComponents.TextInputControllerOutlined;
+using MTextInputControllerUnderline = MaterialComponents.TextInputControllerUnderline;
 
 namespace Xamarin.Forms.Platform.iOS
 {
@@ -79,6 +82,15 @@ namespace Xamarin.Forms.Platform.iOS
 
 		protected override UITextField CreateNativeControl()
 		{
+			if(Element.Visual == Visual.Material)
+			{
+				var field = new MTextField();
+				field.ClearButtonMode = UITextFieldViewMode.UnlessEditing;
+				var controllerUnderline = new MTextInputControllerUnderline(field);
+				controllerUnderline.PlaceholderText = (string)Element.GetValue(AutomationProperties.HelpTextProperty);
+				return field;
+			}
+
 			return new UITextField(RectangleF.Empty);
 		}
 

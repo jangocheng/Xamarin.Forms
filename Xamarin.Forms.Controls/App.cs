@@ -135,7 +135,8 @@ namespace Xamarin.Forms.Controls
 					Children =
 					{
 						entryField,
-						entryField2
+						entryField2,
+						new Button(){ Text = "Test"}
 					}
 				}
 			};

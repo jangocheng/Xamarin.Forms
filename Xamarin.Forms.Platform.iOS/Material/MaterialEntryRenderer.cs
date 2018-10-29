@@ -11,10 +11,10 @@ using MTextField = MaterialComponents.TextField;
 using MTextInputControllerOutlined = MaterialComponents.TextInputControllerOutlined;
 using MTextInputControllerUnderline = MaterialComponents.TextInputControllerUnderline;
 
-[assembly: ExportRenderer(typeof(Entry), typeof(Xamarin.Forms.Platform.iOS.Material.MaterialEntryRenderer), new[] { typeof(Visual.MaterialVisual) })]
+//[assembly: ExportRenderer(typeof(Entry), typeof(Xamarin.Forms.Platform.iOS.Material.MaterialEntryRenderer), new[] { typeof(Visual.MaterialVisual) })]
 namespace Xamarin.Forms.Platform.iOS.Material
 {
-	public class MaterialEntryRenderer : ViewRenderer<Entry, UITextField>
+	public class MaterialEntryRenderer :  EntryRenderer //ViewRenderer<Entry, UITextField>
 	{
 		protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
 		{
