@@ -193,6 +193,9 @@ namespace Xamarin.Forms.Internals
 							{
 								for (int i = 0; i < attribute2.SupportedVisuals.Length; i++)
 								{
+									if (attribute2.SupportedVisuals[i] == _defaultVisualRenderer)
+										specificTypeRenderer = attribute2.Type;
+
 									if (attribute2.SupportedVisuals[i] == visualType)
 									{
 										specificTypeRenderer = attribute2.Type;

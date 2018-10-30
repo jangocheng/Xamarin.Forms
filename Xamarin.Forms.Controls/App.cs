@@ -115,18 +115,15 @@ namespace Xamarin.Forms.Controls
 			{
 				Visual = Visual.Material,
 				Text = "Material",
+				Placeholder = "I am the title Text"
 			};
-
-			entryField.SetAutomationPropertiesHelpText("I am the title Text");
-
 
 			var entryField2 = new Entry()
 			{
 				Visual = Visual.Material,
 				Text = "",
+				Placeholder = "I am the title Text"
 			};
-
-			entryField2.SetAutomationPropertiesHelpText("I am the title Text");
 
 			var page = new ContentPage()
 			{
@@ -135,8 +132,8 @@ namespace Xamarin.Forms.Controls
 					Children =
 					{
 						entryField,
-						entryField2,
-						new Button(){ Text = "Test"}
+						//entryField2,
+						new Button(){ Text = "Test", Visual = Visual.Material }
 					}
 				}
 			};

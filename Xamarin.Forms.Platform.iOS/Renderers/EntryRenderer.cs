@@ -81,16 +81,7 @@ namespace Xamarin.Forms.Platform.iOS
 		}
 
 		protected override UITextField CreateNativeControl()
-		{
-			if(Element.Visual == Visual.Material)
-			{
-				var field = new MTextField();
-				field.ClearButtonMode = UITextFieldViewMode.UnlessEditing;
-				var controllerUnderline = new MTextInputControllerUnderline(field);
-				controllerUnderline.PlaceholderText = (string)Element.GetValue(AutomationProperties.HelpTextProperty);
-				return field;
-			}
-
+		{			
 			return new UITextField(RectangleF.Empty);
 		}
 
