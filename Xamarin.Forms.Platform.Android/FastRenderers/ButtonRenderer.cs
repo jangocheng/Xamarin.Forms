@@ -502,11 +502,5 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
 			_paddingDeltaPix = delta ?? new Thickness();
 			UpdatePadding();
 		}
-
-		protected override void OnDraw(Canvas canvas)
-		{
-			System.Diagnostics.Debug.WriteLine($">>>>> ButtonRenderer OnDraw Elevation: {Elevation}");
-			base.OnDraw(canvas);
-		}
 	}
 }
